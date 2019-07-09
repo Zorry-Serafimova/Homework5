@@ -16,7 +16,7 @@ public class Hooks extends BaseUtils {
     @Before
     public void setup() {
         base.driver = new ChromeDriver();
-        base.baseURL = "https://seleniumclass.000webhostapp.com/web/index.php?r=users%2Fupdate&id=";
+        base.baseURL = "https://seleniumclass.000webhostapp.com/web/index.php?r=users%2Fview&id=";
     }
 
     @After

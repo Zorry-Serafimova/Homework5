@@ -22,26 +22,19 @@ public class CreateUser extends BaseUtils {
 
     @Given("^User is created via api$")
     public void userIsCreatedViaApi() throws UnirestException {
-        User user = new User(
-                70, "testZ", "TestUZ", "testu_z@gmail.com", "23 Main str, Hollywood, CA",
-                "324-854-5768");
+        base.user = new User("testAddress", "574-4837-9843", "testname", 13, "alf@alf.net", "Alfie");
+        base.gson = new GsonBuilder().create();
 
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
-
-        String jsonInString = gson.toJson(user);
-        System.out.println(jsonInString);
+        String postUserInString = base.gson.toJson(base.user);
         HttpResponse<JsonNode> jsonResponse = Unirest.post("https://seleniumclass.000webhostapp.com/api/v1/users")
-                .header("accept", "application/json")
-                .body(jsonInString)
+                .header("Content-Type", "application/json")
+                .body(postUserInString)
                 .asJson();
-        System.out.println(jsonResponse.getBody());
-        System.out.println(jsonResponse.getStatus());
         Assert.assertNotNull(jsonResponse.getBody());
-     //   Assert.assertEquals(201, jsonResponse.getStatus());
+        Assert.assertEquals(201, jsonResponse.getStatus());
 
-        /*base.postUser = new Post();
-        base.postUser = gson.fromJson(jsonResponse.getBody().toString(), Post.class);
-        base.id = base.postUser.getId();*/
+        base.postUser = new Post();
+        base.postUser = base.gson.fromJson(jsonResponse.getBody().toString(), Post.class);
+        base.id = base.postUser.getId();
     }
 }
