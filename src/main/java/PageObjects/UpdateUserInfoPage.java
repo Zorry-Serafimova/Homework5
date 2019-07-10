@@ -24,13 +24,13 @@ public class UpdateUserInfoPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void updateUserInfo(String id, String name, String userName, String email, String address, String phone){
-        txtId.sendKeys(id);
-        txtName.sendKeys(name);
-        txtUserName.sendKeys(userName);
-        txtEmail.sendKeys(email);
-        txtAddress.sendKeys(address);
-        txtPhone.sendKeys(phone);
+    public void updateUserInfo(User user){
+        txtId.sendKeys(String.valueOf(user.getId()));
+        txtName.sendKeys(user.getName());
+        txtUserName.sendKeys(user.getUsername());
+        txtEmail.sendKeys(user.getEmail());
+        txtAddress.sendKeys(user.getAddress());
+        txtPhone.sendKeys(user.getPhone());
         txtPhone.submit();
     }
 

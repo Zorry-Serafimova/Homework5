@@ -21,6 +21,7 @@ public class Hooks extends BaseUtils {
 
     @After
     public void clear() {
+        //add code to remove the user
         base.driver.quit();
     }
 }

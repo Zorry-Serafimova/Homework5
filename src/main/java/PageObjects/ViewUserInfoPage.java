@@ -11,32 +11,31 @@ import java.util.List;
 public class ViewUserInfoPage {
     @FindBy(linkText = "Update")
     private WebElement btnUpdate;
-   /* @FindBy(xpath = "//th[contains(text(),'ID')]/following::td")
-    private List<WebElement> tblValues;*/
+   /* @FindBy(css = "td")
+    private List<WebElement> tblValues;
 
-    @FindBy(xpath = "//td[contains(text(),'57')]")
+    @FindBy(id = "w0")
     private WebElement idCol;
+
+@FindBy (xpath = "//table[@id='w0']//td")
+        private List<WebElement> test;*/
+
 
 
     public ViewUserInfoPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
-    /*public List<WebElement> getTblValues() {
-        return tblValues;
+    /*public void printtbl(WebDriver driver, String value) {
+        System.out.println(idCol.getText() + " table");
+        WebElement rows = driver.findElement(By.xpath("//td[contains(text(),'"+ value + "')]"));
+        System.out.println("size: " + test.size());
+        for (WebElement el : tblValues) {
+            System.out.println("values: " + el.getText());
+        }
     }*/
 
-    /*public void printtbl() {
-        System.out.println("size: " + tblValues.size());
-        for (WebElement el : tblValues) {
-                System.out.println("values: " + el.getText());
-            }
-        }*/
-    public void setIdCol(){
-        System.out.println(idCol.getText());
-    }
-
-    public void clickOnUpdateButton(){
+    public void clickOnUpdateButton() {
         btnUpdate.click();
     }
 
