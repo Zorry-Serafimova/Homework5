@@ -21,16 +21,18 @@ public class CreateUser extends BaseUtils {
 
     @Given("^User is created via api$")
     public void userIsCreatedViaApi() throws UnirestException {
+
         base.user = new User("385 Irving plaza, suite 1700", "574-4837-9843", "Lucy Smith", 13, "alf@alf.net", "lsmith84");
         base.gson = new GsonBuilder().create();
-
+        //Serialize the object so it can be used in the API to setup user
         String postUserInString = base.gson.toJson(base.user);
 
         HttpResponse<JsonNode> jsonResponse = getJsonNodeHttpResponse(postUserInString);
-
+        //Make sure call is successful
         Assert.assertNotNull(jsonResponse.getBody());
         Assert.assertEquals(201, jsonResponse.getStatus());
 
+        //Deserialize to get the ID to be used to navigate to User page
         base.user = base.gson.fromJson(jsonResponse.getBody().toString(), User.class);
         base.id = base.user.getId();
     }
